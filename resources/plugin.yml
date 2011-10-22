@@ -1,0 +1,6 @@
+name: StatusTags
+description: Associates various statuses to players.
+version: %VERSION%
+depend: [MessageManager]
+author: EdGruberman (ed@rjump.com)
+main: edgruberman.bukkit.statustags.Main

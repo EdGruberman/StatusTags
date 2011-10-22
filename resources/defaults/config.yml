@@ -1,0 +1,26 @@
+status:
+    BED:
+        enabled: true
+        format: '#Bed'
+        priority: 100
+    IDLE:
+        enabled: true
+        format: '#Idle'
+        priority: 50
+        threshold: 60
+        activity:
+            - PLAYER_MOVE
+            - PLAYER_CHAT
+            - PLAYER_INTERACT
+            - PLAYER_DROP_ITEM
+            - PLAYER_TOGGLE_SNEAK
+            - PLAYER_ITEM_HELD
+            - PLAYER_JOIN
+            - CUSTOM_EVENT:MessageFormatter.PLAYER_CHAT
+    AWAY:
+        enabled: true
+        format: '#Away'
+        priority: 10
+        triggers: [away,afk]
+        autoBack:
+            - PLAYER_CHAT
