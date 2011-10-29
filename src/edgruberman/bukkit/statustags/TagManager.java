@@ -20,10 +20,16 @@ final class TagManager {
     }
     
     static boolean removeTag(final Player player, final Tag tag) {
-        if (!TagManager.tags.get(player).remove(tag)) return false;
+        TreeSet<Tag> playerTags = TagManager.tags.get(player);
         
-        // No reason to refresh name if current highest tag was higher than removed tag
-        if (TagManager.tags.get(player).size() > 0 && TagManager.tags.get(player).last().compareTo(tag) == 1) return true;
+        // Disconnection errors can cause NPEs
+        if (playerTags == null) return false;
+        
+        // Exit if tag did not exist
+        if (!playerTags.remove(tag)) return false;
+        
+        // Exit if removed tag was not the currently displayed tag
+        if (playerTags.size() > 0 && playerTags.last().compareTo(tag) == 1) return true;
         
         TagManager.refresh(player);
         return true;
