@@ -1,6 +1,5 @@
 package edgruberman.bukkit.statustags;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -65,7 +64,6 @@ public final class Main extends JavaPlugin {
         new Bed(tag);
     }
     
-    @SuppressWarnings("unchecked")
     private static void loadIdle() {
         FileConfiguration cfg = Main.configurationFile.getConfig();
         if (!cfg.getBoolean("status.IDLE.enabled", Idle.DEFAULT_ENABLED)) return;
@@ -73,7 +71,7 @@ public final class Main extends JavaPlugin {
         Set<Event.Type> activity = new HashSet<Event.Type>();
         Set<String> custom = new HashSet<String>();
         
-        for (String event : (List<String>) cfg.getList("status.IDLE.activity", Collections.<String>emptyList())) {
+        for (String event : (List<String>) cfg.getStringList("status.IDLE.activity")) {
             String type = event;
             String name = null;
             
